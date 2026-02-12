@@ -13,6 +13,7 @@ func _unhandled_input(event):
 		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x, -75.00, 75.00)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		# would rather make esc just end the game directly for now
 
 func _physics_process(delta):
 	const SPEED = 5.5
@@ -36,5 +37,20 @@ func _physics_process(delta):
 		velocity.y = 0 # jump-cutting feels too sharp, I want to smooth it...
 	
 	move_and_slide()
+	
+	# Shooting
+	if Input.is_action_pressed("shoot") and %Timer.is_stopped():
+		shoot_bullet()
+	
+func shoot_bullet():
+	const BULLET_3D = preload("res://scenes/bullet_3d.tscn")
+	var new_bullet = BULLET_3D.instantiate()
+	%Marker3D.add_child(new_bullet)
+	
+	new_bullet.global_transform = %Marker3D.global_transform
+	
+	%Timer.start()
+	
+	
 	
 	

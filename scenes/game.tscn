@@ -1,3 +1,93 @@
-[gd_scene format=3 uid="uid://d2gwsimschj45"]
+[gd_scene load_steps=6 format=3 uid="uid://d2gwsimschj45"]
+
+[ext_resource type="Material" uid="uid://6bjluibgbr6n" path="res://materials/platform.tres" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ppie5pya8nwc" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Material" uid="uid://cykrrnaxx2tnn" path="res://materials/bridge.tres" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://n1icfkvji1ko" path="res://scenes/mob.tscn" id="4_lbhrr"]
+
+[sub_resource type="Environment" id="Environment_uwrxv"]
+background_mode = 1
+background_color = Color(0, 1, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.838829, 0.762733, 0.768594, 1)
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.229631, 1.88673e-05, 0.910673, 1)
+fog_density = 0.001
+fog_sky_affect = 0.751
+fog_height = 0.5
+fog_height_density = 0.025
 
 [node name="Game" type="Node3D"]
+
+[node name="World" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 0, 11, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_uwrxv")
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+use_collision = true
+size = Vector3(16, 14, 16)
+material = ExtResource("1_lnu2h")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.5)
+use_collision = true
+size = Vector3(6, 3, 4)
+material = ExtResource("2_lbhrr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -3, -11.5)
+use_collision = true
+size = Vector3(6, 3, 4)
+material = ExtResource("2_lbhrr")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, -23.5)
+use_collision = true
+size = Vector3(6, 3, 4)
+material = ExtResource("2_lbhrr")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, -3, -1.5)
+use_collision = true
+size = Vector3(6, 3, 4)
+material = ExtResource("2_lbhrr")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, -2, -12)
+use_collision = true
+size = Vector3(5, 3, 4)
+material = ExtResource("2_lbhrr")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -24)
+use_collision = true
+size = Vector3(16, 14, 16)
+material = ExtResource("1_lnu2h")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -7, -24)
+use_collision = true
+size = Vector3(16, 14, 16)
+material = ExtResource("1_lnu2h")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -10, -2)
+use_collision = true
+size = Vector3(12, 14, 12)
+material = ExtResource("1_lnu2h")
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Mob" parent="." instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -11)
