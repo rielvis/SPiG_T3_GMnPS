@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1icfkvji1ko"]
+
+[ext_resource type="PackedScene" uid="uid://cp6obrm3u0fwf" path="res://scenes/bat_model.tscn" id="1_4are2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bsing"]
+radius = 0.313719
+
+[node name="Mob" type="RigidBody3D"]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bsing")
+
+[node name="bat_model" parent="." instance=ExtResource("1_4are2")]
